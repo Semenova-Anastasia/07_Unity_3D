@@ -1,47 +1,61 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Geekbrains
+namespace GeekBrains
 {
-	public sealed class Main : MonoBehaviour
-	{
-		public FlashLightController FlashLightController { get; private set; }
-		public InputController InputController { get; private set; }
-		public PlayerController PlayerController { get; private set; }
+    /// <summary>
+    /// Точка входа в программу
+    /// </summary>
+    public sealed class Main : MonoBehaviour
+    {
+        /// <summary>
+        /// Ссылка на контроллер фонарика
+        /// </summary>
+        public FlashLightController FlashLightController { get; private set; }
 
-		private readonly List<IOnUpdate> _updates = new List<IOnUpdate>();
-		private Transform Player;
+        /// <summary>
+        /// Ссылка на контроллер нажатия клавиш
+        /// </summary>
+        public InputController InputController { get; private set; }
 
-		public static Main Instance { get; private set; }
-		
-		private void Awake()
-		{
-			Instance = this;
+        /// <summary>
+        /// Ссылка на контроллер игрока
+        /// </summary>
+        public PlayerController PlayerController { get; private set; }
 
-			Player = GameObject.FindGameObjectWithTag("Player").transform;
-			
-			PlayerController = new PlayerController(new UnitMotor(Player));
-			_updates.Add(PlayerController);
+        private readonly List<IOnUpdate> _updates = new List<IOnUpdate>();
+        private Transform Player;
 
-			FlashLightController = new FlashLightController();
-			_updates.Add(FlashLightController);
+        public static Main Instance { get; private set; }
 
-			InputController = new InputController();
-			_updates.Add(InputController);
-		}
+        private void Awake()
+        {
+            Instance = this;
 
-		private void Start()
-		{
-			FlashLightController.Init();
-			InputController.On();
-		}
+            Player = GameObject.FindGameObjectWithTag("Player").transform;
 
-		private void Update()
-		{
-			for (var i = 0; i < _updates.Count; i++)
-			{
-				_updates[i].OnUpdate();
-			}
-		}
-	}
+            PlayerController = new PlayerController(new UnitMotor(Player));
+            _updates.Add(PlayerController);
+
+            FlashLightController = new FlashLightController();
+            _updates.Add(FlashLightController);
+
+            InputController = new InputController();
+            _updates.Add(InputController);
+        }
+
+        private void Start()
+        {
+            FlashLightController.Init();
+            InputController.On();
+        }
+
+        private void Update()
+        {
+            for (var i = 0; i < _updates.Count; i++)
+            {
+                _updates[i].OnUpdate();
+            }
+        }
+    }
 }

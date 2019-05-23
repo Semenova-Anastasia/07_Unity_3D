@@ -1,19 +1,19 @@
 ﻿using UnityEngine;
 
-namespace Geekbrains
+namespace GeekBrains
 {
-	public class PlayerController : BaseController, IOnUpdate
-	{
-		private readonly IMotor _motor;
+    public class PlayerController : BaseController, IOnUpdate
+    {
+        private readonly IMotor _motor;
 
-		public PlayerController(IMotor motor)
-		{
-			_motor = motor;
-		}
+        public PlayerController(IMotor motor)
+        {
+            _motor = motor;
+        }
 
-		public void OnUpdate()
-		{
-			_motor.Move();
-		}
-	}
+        public void OnUpdate()
+        {
+            _motor.Move();
+        }
+    }
 }

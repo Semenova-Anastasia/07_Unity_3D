@@ -1,25 +1,25 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 
-namespace Geekbrains
+namespace GeekBrains
 {
     public class FlashLightUi : MonoBehaviour
     {
-	    private Text _text;
+        private Image _image;
 
-	    private void Awake()
-	    {
-		    _text = GetComponent<Text>();
-	    }
+        private void Awake()
+        {
+            _image = GetComponent<Image>();
+        }
 
-	    public float Text
-	    {
-		    set => _text.text = $"{value:0.0}";
-	    }
+        public float Battery
+        {
+            set => _image.fillAmount = value;
+        }
 
-	    public void SetActive(bool value)
-	    {
-		    _text.gameObject.SetActive(value);
-	    }
+        public void SetActive(bool value)
+        {
+            _image.gameObject.SetActive(value);
+        }
     }
 }

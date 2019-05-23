@@ -1,7 +1,7 @@
-﻿namespace Geekbrains
+﻿namespace GeekBrains
 {
-	public interface IInitialization
-	{
-		void Init();
-	}
+    public interface IInitialization
+    {
+        void Init();
+    }
 }

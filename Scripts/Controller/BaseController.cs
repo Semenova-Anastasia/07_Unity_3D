@@ -1,34 +1,43 @@
-﻿namespace Geekbrains
+﻿namespace GeekBrains
 {
-	public abstract class BaseController
-	{
-		public bool IsActive { get; private set; }
+    public abstract class BaseController
+    {
+        public bool IsActive { get; private set; }
 
-		public virtual void On()
-		{
-			On(null);
-		}
+        /// <summary>
+        /// Включение контроллера
+        /// </summary>
+        public virtual void On()
+        {
+            On(null);
+        }
 
-		public virtual void On(BaseObjectScene obj)
-		{
-			IsActive = true;
-		}
+        public virtual void On(BaseObjectScene obj)
+        {
+            IsActive = true;
+        }
 
-		public virtual void Off()
-		{
-			IsActive = false;
-		}
+        /// <summary>
+        /// Выключение контроллера
+        /// </summary>
+        public virtual void Off()
+        {
+            IsActive = false;
+        }
 
-		public void Switch()
-		{
-			if (!IsActive)
-			{
-				On();
-			}
-			else
-			{
-				Off();
-			}
-		}
-	}
+        /// <summary>
+        /// Переключение состояния контроллера
+        /// </summary>
+        public void Switch()
+        {
+            if (!IsActive)
+            {
+                On();
+            }
+            else
+            {
+                Off();
+            }
+        }
+    }
 }
